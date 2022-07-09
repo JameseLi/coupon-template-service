@@ -59,7 +59,7 @@ public class CouponTemplateServiceImpl implements CouponTemplateService {
     @Override
     public CouponTemplateInfo loadTemplateInfo(Long id) {
         Optional<CouponTemplate> template = couponTemplateRepository.findById(id);
-        return template.isPresent() ? CouponTemplateConverter.convertToTemplateInfo(template.get()) : null;
+        return template.map(CouponTemplateConverter::convertToTemplateInfo).orElse(null);
     }
 
     @Override
